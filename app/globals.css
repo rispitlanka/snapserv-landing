@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-poppins), system-ui, sans-serif;
+
+  --color-brand: #2350e6;
+  --color-brand-tint: #eaf0ff;
+  --color-brand-line: #bfcdfb;
+  --color-ink: #121633;
+  --color-muted: #4b5163;
+  --color-sub: #5b6275;
+  --color-line: #e4e7f0;
+  --color-page: #f5f7fc;
+  --color-wa: #128c4a;
+  --color-wa-dark: #0e7038;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background: var(--color-page);
+  color: var(--color-ink);
+}
+
+/* Floating hero doodles */
+@keyframes float-a {
+  0%, 100% { transform: translateY(0) rotate(-6deg); }
+  50% { transform: translateY(-14px) rotate(4deg); }
+}
+@keyframes float-b {
+  0%, 100% { transform: translateY(0) rotate(5deg); }
+  50% { transform: translateY(12px) rotate(-5deg); }
+}
+@keyframes float-c {
+  0%, 100% { transform: translateX(0) scale(1); }
+  50% { transform: translateX(8px) scale(1.12); }
+}
+.float-a { animation: float-a 6s ease-in-out infinite; }
+.float-b { animation: float-b 7s ease-in-out infinite; }
+.float-c { animation: float-c 5s ease-in-out infinite; }
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #e9edf6;
+  border-radius: 10px;
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  animation: shimmer 1.3s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .float-a, .float-b, .float-c { animation: none; }
+  .skeleton::after { animation: none; }
+}
